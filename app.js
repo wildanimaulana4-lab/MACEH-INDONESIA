@@ -109,6 +109,7 @@ const TRANSLATIONS = {
     toast: 'Bahasa diubah ke Bahasa Indonesia',
     navIdentity: 'Brand Identity',
     navSpecs: 'Spesifikasi Produk',
+    navWhyUs: 'Mengapa Kami',
     navSustain: 'Keberlanjutan',
     heroBadge: 'MACEH INDONESIA — REMPAH NUSANTARA',
     heroDesc: 'Kualitas Rempah Nusantara Pilihan.',
@@ -120,7 +121,9 @@ const TRANSLATIONS = {
     identityTitle: 'Memasak, Penuh Makna, Rasa, & Kebaikan.',
     identityDesc: 'MACEH Indonesia menghadirkan rempah-rempah premium yang dipilih langsung dari kebun terbaik di Sulawesi.',
     card1Title: 'Filosofi Keaslian & Kebun Sulawesi',
-    card1Desc: 'Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.'
+    card1Desc: 'Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.',
+    whyUsTitle: 'What sets us apart?',
+    whyUsDesc: 'Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.'
   },
   en: {
     flag: '🇬🇧',
@@ -128,6 +131,7 @@ const TRANSLATIONS = {
     toast: 'Language switched to English',
     navIdentity: 'Brand Identity',
     navSpecs: 'Product Specs',
+    navWhyUs: 'Why Us',
     navSustain: 'Sustainability',
     heroBadge: 'MACEH INDONESIA — ARCHIPELAGO SPICES',
     heroDesc: 'Premium Choice of Archipelago Spices.',
@@ -139,7 +143,9 @@ const TRANSLATIONS = {
     identityTitle: 'Cooking, Full of Meaning, Flavor, & Goodness.',
     identityDesc: 'MACEH Indonesia delivers premium spices sourced directly from the finest plantations in Sulawesi.',
     card1Title: 'Philosophy of Authenticity & Sulawesi Harvest',
-    card1Desc: 'Through natural processing and meticulous crafting, we ensure every spice retains its authentic flavor, aroma, and natural benefits for every dish.'
+    card1Desc: 'Through natural processing and meticulous crafting, we ensure every spice retains its authentic flavor, aroma, and natural benefits for every dish.',
+    whyUsTitle: 'What sets us apart?',
+    whyUsDesc: 'Commitment to pure spice excellence sourced directly from South Sulawesi plantations.'
   }
 };
 
