@@ -123,7 +123,10 @@ const TRANSLATIONS = {
     card1Title: 'Filosofi Keaslian & Kebun Sulawesi',
     card1Desc: 'Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.',
     whyUsTitle: 'What sets us apart?',
-    whyUsDesc: 'Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.'
+    whyUsDesc: 'Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.',
+    whyUsRow1: 'Bibit unggul menciptakan hasil yang terbaik.',
+    whyUsRow2: 'Premium quality, dari tangan pertama, harga terjaga.',
+    whyUsRow3: 'Proses, sampai pengemasan dilakukan sendiri untuk menjaga kualitas.'
   },
   en: {
     flag: '🇬🇧',
@@ -145,7 +148,10 @@ const TRANSLATIONS = {
     card1Title: 'Philosophy of Authenticity & Sulawesi Harvest',
     card1Desc: 'Through natural processing and meticulous crafting, we ensure every spice retains its authentic flavor, aroma, and natural benefits for every dish.',
     whyUsTitle: 'What sets us apart?',
-    whyUsDesc: 'Commitment to pure spice excellence sourced directly from South Sulawesi plantations.'
+    whyUsDesc: 'Commitment to pure spice excellence sourced directly from South Sulawesi plantations.',
+    whyUsRow1: 'Superior seedlings yield the finest harvest results.',
+    whyUsRow2: 'First-hand premium quality with protected fair prices.',
+    whyUsRow3: 'In-house processing through to final packaging preserves peak quality.'
   }
 };
 
