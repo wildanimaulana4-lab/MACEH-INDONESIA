@@ -2,85 +2,59 @@
    KALA SPICE CO. - APPLICATION LOGIC & INTERACTIVE SUITE
    ========================================================================== */
 
-// 1. DATASET: SPICE PACKAGING & PRODUCTS
+// 1. DATASET: MACEH INDONESIA PRODUCTS
 const SPICE_PRODUCTS = [
   {
-    id: 'paprika-01',
-    name: 'Smoked Paprika de la Vera',
+    id: 'cengkeh-01',
+    name: 'Cengkeh Kering Utuh',
     category: 'single-origin',
-    categoryLabel: 'Single-Origin',
-    origin: 'Extremadura, Spain',
-    price: 18.50,
-    image: 'assets/images/paprika.png',
-    description: 'Slow-smoked over oak wood fires for 15 days. Imparts a rich, smoldering ruby warmth to paellas, stews, and roasted meats.',
-    flavorProfile: { heat: 40, aroma: 95, earthy: 85, sweet: 60, citrus: 20, smoky: 100 },
-    packagingSpec: 'Amber UV-cut Violet Glass (120g) with Cork Lid',
-    batchCode: 'SP-2026-X9'
+    categoryLabel: 'Premium Whole Cloves',
+    origin: 'South Sulawesi, Indonesia',
+    price: 35.00,
+    image: 'maceh_promo.jpg',
+    description: 'Cengkeh kering utuh pilihan grade tertinggi dari Sulawesi Selatan. Memberikan aroma hangat, manis pedas yang tajam dan menggugah selera.',
+    flavorProfile: { heat: 65, aroma: 98, earthy: 85, sweet: 70, citrus: 30, smoky: 40 },
+    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
+    batchCode: 'MCH-CK-2026'
   },
   {
-    id: 'saffron-02',
-    name: 'Royal Sargol Saffron',
-    category: 'signature-tins',
-    categoryLabel: 'Signature Tin',
-    origin: 'Khorasan, Iran',
-    price: 42.00,
-    image: 'assets/images/saffron.png',
-    description: 'Grade-A pure crimson stigmas harvested before dawn. Delivers incomparable honeyed floral aroma and vivid gold hues.',
-    flavorProfile: { heat: 10, aroma: 100, earthy: 70, sweet: 85, citrus: 30, smoky: 15 },
-    packagingSpec: 'Matte Obsidian Tin with Embossed Gold Foil (5g)',
-    batchCode: 'SF-2026-A1'
-  },
-  {
-    id: 'cinnamon-03',
-    name: 'Ceylon "Alba" Cinnamon',
+    id: 'merica-putih-02',
+    name: 'Merica Putih Utuh',
     category: 'single-origin',
-    categoryLabel: 'Single-Origin',
-    origin: 'Rathnapura, Sri Lanka',
-    price: 16.00,
-    image: 'assets/images/cinnamon.png',
-    description: 'True thin-quill bark ground to velvet perfection. Delicately sweet with notes of subtle clove and warm citrus citrus.',
-    flavorProfile: { heat: 20, aroma: 90, earthy: 60, sweet: 95, citrus: 40, smoky: 10 },
-    packagingSpec: 'Clear Cylinder Glass (90g) with Amber Seal',
-    batchCode: 'CN-2026-C4'
+    categoryLabel: 'Premium White Peppercorns',
+    origin: 'South Sulawesi, Indonesia',
+    price: 32.00,
+    image: 'maceh_promo.jpg',
+    description: 'Biji merica putih utuh 100% alami tanpa bahan pemutih. Menghasilkan rasa pedas bersih (clean) dan aroma harum khas masakan Nusantara.',
+    flavorProfile: { heat: 85, aroma: 90, earthy: 75, sweet: 20, citrus: 40, smoky: 10 },
+    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
+    batchCode: 'MCH-MP-2026'
   },
   {
-    id: 'cardamom-04',
-    name: 'Wild Green Cardamom',
+    id: 'merica-hitam-03',
+    name: 'Merica Hitam Utuh',
     category: 'single-origin',
-    categoryLabel: 'Single-Origin',
-    origin: 'Idukki Hills, India',
-    price: 22.00,
-    image: 'assets/images/cardamom.png',
-    description: 'Hand-picked jumbo pods brimming with essential oils. Bursting with menthol eucalyptus warmth and camphorous citrus.',
-    flavorProfile: { heat: 35, aroma: 98, earthy: 50, sweet: 70, citrus: 90, smoky: 5 },
-    packagingSpec: 'Emerald UV-Glass Jar (75g) with Beech Wood Top',
-    batchCode: 'CD-2026-M8'
+    categoryLabel: 'Premium Black Peppercorns',
+    origin: 'South Sulawesi, Indonesia',
+    price: 30.00,
+    image: 'maceh_promo.jpg',
+    description: 'Merica hitam utuh beraroma kuat (pungent) dan essensial. Dipetik pada kematangan optimal untuk menjamin kepedasan yang kaya dan otentik.',
+    flavorProfile: { heat: 90, aroma: 95, earthy: 80, sweet: 15, citrus: 50, smoky: 30 },
+    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
+    batchCode: 'MCH-MH-2026'
   },
   {
-    id: 'gift-05',
-    name: 'The Artisan Grand Reserve Box',
+    id: 'trio-pack-04',
+    name: 'MACEH Trio Trio Paket Rempah',
     category: 'gift-sets',
-    categoryLabel: 'Gift Box',
-    origin: 'Curated Heritage Vault',
-    price: 88.00,
-    image: 'assets/images/gift_box.png',
-    description: 'An extraordinary gift box containing Sargol Saffron, Smoked Paprika, Ceylon Cinnamon, and Green Cardamom in a velvet interior.',
-    flavorProfile: { heat: 65, aroma: 100, earthy: 85, sweet: 80, citrus: 65, smoky: 60 },
-    packagingSpec: 'Rigid Matte Black Box with Gold Foil Stamping',
-    batchCode: 'GR-2026-GOLD'
-  },
-  {
-    id: 'brand-06',
-    name: 'Single-Origin Sumac & Herbs',
-    category: 'heritage-blends',
-    categoryLabel: 'Heritage Blend',
-    origin: 'Gaziantep, Turkey',
-    price: 19.50,
-    image: 'assets/images/brand_mockup.png',
-    description: 'Wild tart burgundy berry flakes combined with sun-dried oregano and sea salt. Crisp, tangy citrus finish.',
-    flavorProfile: { heat: 15, aroma: 80, earthy: 45, sweet: 30, citrus: 100, smoky: 20 },
-    packagingSpec: 'Custom Terracotta Label Jar (100g)',
-    batchCode: 'SM-2026-TR'
+    categoryLabel: 'Trio Pack Special',
+    origin: 'South Sulawesi, Indonesia',
+    price: 90.00,
+    image: 'maceh_promo.jpg',
+    description: 'Paket spesial 3 toples lengkap: Cengkeh Kering Utuh, Merica Putih Utuh, dan Merica Hitam Utuh dalam satu kotak eksklusif MACEH INDONESIA.',
+    flavorProfile: { heat: 80, aroma: 100, earthy: 85, sweet: 50, citrus: 40, smoky: 30 },
+    packagingSpec: 'Eksklusif 3 Toples Kaca (Netto 3 x 75g)',
+    batchCode: 'MCH-TRIO-2026'
   }
 ];
 
