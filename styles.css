@@ -1211,6 +1211,55 @@ img {
   font-size: 1.5rem;
 }
 
+/* ==========================================================================
+   MOBILE PORTRAIT SHORTCUT NAVIGATION BAR
+   ========================================================================== */
+.mobile-shortcut-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-shortcut-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: rgba(7, 37, 18, 0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .mobile-shortcut-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shortcut-item {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #d0d0d0;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .shortcut-item:hover, .shortcut-item:active, .shortcut-item.active {
+    color: #F6AB2E;
+    background: rgba(246, 171, 46, 0.18);
+    border-color: #F6AB2E;
+  }
+}
+
 @keyframes rotateBadge {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
