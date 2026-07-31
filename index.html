@@ -26,7 +26,6 @@
         <ul class="nav-links">
           <li><a href="#identity" class="nav-link">Brand Identity</a></li>
           <li><a href="#specs" class="nav-link">Product Specs</a></li>
-          <li><a href="#blend-lab" class="nav-link">Custom Blend Lab</a></li>
           <li><a href="#sustainability" class="nav-link">Sustainability</a></li>
         </ul>
       </nav>
@@ -83,7 +82,6 @@
               <span>Jelajahi Produk</span>
               <span>&rarr;</span>
             </a>
-            <a href="#blend-lab" class="btn-secondary">Blend Lab</a>
           </div>
         </div>
 
@@ -248,82 +246,6 @@
 
 
 
-  <!-- SECTION 4: THE CUSTOM BLEND LAB (LIVE LABEL PREVIEW) -->
-  <section class="section" id="blend-lab">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle tracking-widest">ATELIER LAB</span>
-        <h2 class="section-title">Formulate Your Custom Blend</h2>
-        <p class="section-desc">Adjust the ratios of raw spices below. Watch your custom packaging label render live with your personalized batch code.</p>
-      </div>
-
-      <div class="blend-lab-container">
-        <div class="blend-controls">
-          <div style="margin-bottom:1.5rem;">
-            <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:0.4rem;">CUSTOM BLEND NAME</label>
-            <input type="text" id="custom-blend-name" value="ROYAL VAULT BLEND" style="width:100%; padding:0.8rem 1rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle); background:var(--bg-surface); color:var(--text-main); font-family:var(--font-serif); font-size:1.2rem;">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Smoked Paprika (Oak Smoke)</span>
-                <span id="val-paprika" style="color:var(--terracotta);">40%</span>
-              </div>
-              <input type="range" id="slider-paprika" min="0" max="100" value="40" class="slider-input">
-            </div>
-
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Green Cardamom (Menthol Citrus)</span>
-                <span id="val-cardamom" style="color:var(--emerald);">20%</span>
-              </div>
-              <input type="range" id="slider-cardamom" min="0" max="100" value="20" class="slider-input">
-            </div>
-
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Ceylon Cinnamon (Sweet Spice)</span>
-                <span id="val-cinnamon" style="color:var(--saffron);">25%</span>
-              </div>
-              <input type="range" id="slider-cinnamon" min="0" max="100" value="25" class="slider-input">
-            </div>
-
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Wild Sumac (Tart Citrus)</span>
-                <span id="val-sumac" style="color:#7e223b;">15%</span>
-              </div>
-              <input type="range" id="slider-sumac" min="0" max="100" value="15" class="slider-input">
-            </div>
-          </div>
-
-          <button class="btn-primary" onclick="saveCustomBlend()" style="margin-top:2rem; width:100%; justify-content:center;">
-            <span>Add Custom Formulation to Cart ($26.00)</span>
-          </button>
-        </div>
-
-        <!-- LIVE PACKAGING LABEL PREVIEW -->
-        <div class="label-preview-box">
-          <span style="font-size:0.75rem; color:var(--text-muted); margin-bottom:1.5rem; text-transform:uppercase; letter-spacing:0.1em;">LIVE PACKAGING LABEL MOCKUP</span>
-          
-          <div class="live-label-container" id="live-label">
-            <div class="label-brand">KALA SPICE CO.</div>
-            <div class="label-title" id="live-label-title">ROYAL VAULT BLEND</div>
-            <div class="label-code" id="live-label-batch">BATCH #KL-782-CUSTOM</div>
-            
-            <div class="label-ratio-bar" id="label-ratio-bar">
-              <!-- Rendered dynamically -->
-            </div>
-
-            <div style="font-size:0.65rem; color:#666; font-family:var(--font-mono);">
-              ATELIER SINGLE-ORIGIN FORMULATION • 100G
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- SECTION 5: SUSTAINABILITY & MATERIALS -->
   <section class="section" id="sustainability">
