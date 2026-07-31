@@ -24,15 +24,15 @@
 
       <nav>
         <ul class="nav-links">
-          <li><a href="#identity" class="nav-link">Brand Identity</a></li>
-          <li><a href="#specs" class="nav-link">Product Specs</a></li>
-          <li><a href="#sustainability" class="nav-link">Sustainability</a></li>
+          <li><a href="#identity" class="nav-link" data-i18n="navIdentity">Brand Identity</a></li>
+          <li><a href="#specs" class="nav-link" data-i18n="navSpecs">Product Specs</a></li>
+          <li><a href="#sustainability" class="nav-link" data-i18n="navSustain">Sustainability</a></li>
         </ul>
       </nav>
       <div class="nav-actions-mobile">
-        <div class="lang-selector">
-          <span style="font-size: 1.1rem;">🇮🇩</span>
-          <span style="font-size: 0.8rem; font-weight: 700; color: #fff;">ID</span>
+        <div class="lang-selector" id="lang-toggle-btn" style="cursor: pointer;" title="Ganti Bahasa / Switch Language">
+          <span id="lang-flag" style="font-size: 1.1rem;">🇮🇩</span>
+          <span id="lang-code" style="font-size: 0.8rem; font-weight: 700; color: #fff;">ID</span>
         </div>
         <button class="hamburger-btn" id="hamburger-toggle" aria-label="Toggle Menu">
           <span></span>
@@ -52,34 +52,34 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="dot" style="background: #7BB342; box-shadow: 0 0 8px #7BB342;"></span>
-            <span style="color: #7BB342;">MACEH INDONESIA — REMPAH NUSANTARA</span>
+            <span style="color: #7BB342;" data-i18n="heroBadge">MACEH INDONESIA — REMPAH NUSANTARA</span>
           </div>
           <h1 class="hero-title">
             <span class="text-maceh-yellow">A Pinch of Spice,</span><br>
             <span class="text-white">a World of <span class="text-maceh-orange">Flavor.</span></span>
           </h1>
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="heroDesc">
             Kualitas Rempah Nusantara Pilihan.
           </p>
 
           <ul class="maceh-feature-list">
             <li>
               <span class="check-icon">✓</span>
-              100% Natural Spice
+              <span data-i18n="feat1">100% Natural Spice</span>
             </li>
             <li>
               <span class="check-icon">✓</span>
-              Sourced from South Sulawesi
+              <span data-i18n="feat2">Sourced from South Sulawesi</span>
             </li>
             <li>
               <span class="check-icon">✓</span>
-              Best Quality For Better Taste
+              <span data-i18n="feat3">Best Quality For Better Taste</span>
             </li>
           </ul>
 
           <div class="hero-cta">
             <a href="#identity" class="btn-primary" style="background: linear-gradient(135deg, #EB5527, #c43c13);">
-              <span>Jelajahi Produk</span>
+              <span data-i18n="ctaExplore">Jelajahi Produk</span>
               <span>&rarr;</span>
             </a>
           </div>
@@ -119,16 +119,16 @@
     <div class="container">
       <div class="section-header">
         <span class="section-subtitle tracking-widest" style="color: #7BB342;">BRAND IDENTITY SYSTEM</span>
-        <h2 class="section-title">Memasak, Penuh Makna, Rasa, & Kebaikan.</h2>
-        <p class="section-desc">MACEH Indonesia menghadirkan rempah-rempah premium yang dipilih langsung dari kebun terbaik di Sulawesi.</p>
+        <h2 class="section-title" data-i18n="identityTitle">Memasak, Penuh Makna, Rasa, & Kebaikan.</h2>
+        <p class="section-desc" data-i18n="identityDesc">MACEH Indonesia menghadirkan rempah-rempah premium yang dipilih langsung dari kebun terbaik di Sulawesi.</p>
       </div>
 
       <div class="brand-identity-grid">
         <!-- Main Feature Showcase Card -->
         <div class="behance-card col-span-8">
           <span class="tracking-wide" style="font-size:0.75rem; color:#F6AB2E;">BRAND IDENTITY SHOWCASE</span>
-          <h3 class="behance-card-title" style="margin-top:0.5rem;">Filosofi Keaslian & Kebun Sulawesi</h3>
-          <p style="color:var(--text-muted); margin-bottom:1.5rem;">
+          <h3 class="behance-card-title" style="margin-top:0.5rem;" data-i18n="card1Title">Filosofi Keaslian & Kebun Sulawesi</h3>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="card1Desc">
             Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.
           </p>
           <div style="border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-subtle);">

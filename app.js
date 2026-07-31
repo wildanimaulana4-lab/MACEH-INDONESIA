@@ -99,8 +99,74 @@ function updateThemeIcon(theme) {
   }
 }
 
-// Hamburger Mobile Menu Toggle
+// 2. LANGUAGE TRANSLATION SYSTEM (ID <-> EN)
+let currentLang = 'id';
+
+const TRANSLATIONS = {
+  id: {
+    flag: '🇮🇩',
+    code: 'ID',
+    toast: 'Bahasa diubah ke Bahasa Indonesia',
+    navIdentity: 'Brand Identity',
+    navSpecs: 'Spesifikasi Produk',
+    navSustain: 'Keberlanjutan',
+    heroBadge: 'MACEH INDONESIA — REMPAH NUSANTARA',
+    heroDesc: 'Kualitas Rempah Nusantara Pilihan.',
+    feat1: '100% Rempah Alami',
+    feat2: 'Dipanen dari Sulawesi Selatan',
+    feat3: 'Kualitas Terbaik untuk Rasa Lezat',
+    ctaExplore: 'Jelajahi Produk',
+    identitySubtitle: 'BRAND IDENTITY SYSTEM',
+    identityTitle: 'Memasak, Penuh Makna, Rasa, & Kebaikan.',
+    identityDesc: 'MACEH Indonesia menghadirkan rempah-rempah premium yang dipilih langsung dari kebun terbaik di Sulawesi.',
+    card1Title: 'Filosofi Keaslian & Kebun Sulawesi',
+    card1Desc: 'Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.'
+  },
+  en: {
+    flag: '🇬🇧',
+    code: 'EN',
+    toast: 'Language switched to English',
+    navIdentity: 'Brand Identity',
+    navSpecs: 'Product Specs',
+    navSustain: 'Sustainability',
+    heroBadge: 'MACEH INDONESIA — ARCHIPELAGO SPICES',
+    heroDesc: 'Premium Choice of Archipelago Spices.',
+    feat1: '100% Natural Spice',
+    feat2: 'Sourced from South Sulawesi',
+    feat3: 'Best Quality For Better Taste',
+    ctaExplore: 'Explore Products',
+    identitySubtitle: 'BRAND IDENTITY SYSTEM',
+    identityTitle: 'Cooking, Full of Meaning, Flavor, & Goodness.',
+    identityDesc: 'MACEH Indonesia delivers premium spices sourced directly from the finest plantations in Sulawesi.',
+    card1Title: 'Philosophy of Authenticity & Sulawesi Harvest',
+    card1Desc: 'Through natural processing and meticulous crafting, we ensure every spice retains its authentic flavor, aroma, and natural benefits for every dish.'
+  }
+};
+
+function toggleLanguage() {
+  currentLang = currentLang === 'id' ? 'en' : 'id';
+  const t = TRANSLATIONS[currentLang];
+  
+  const flagEl = document.getElementById('lang-flag');
+  const codeEl = document.getElementById('lang-code');
+  if (flagEl) flagEl.textContent = t.flag;
+  if (codeEl) codeEl.textContent = t.code;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  showToast(t.toast);
+}
+
+// Hamburger & Language Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+  const langBtn = document.getElementById('lang-toggle-btn');
+  if (langBtn) {
+    langBtn.addEventListener('click', toggleLanguage);
+  }
+
   const hamburgerBtn = document.getElementById('hamburger-toggle');
   const mobileShortcuts = document.getElementById('mobile-shortcuts');
   if (hamburgerBtn && mobileShortcuts) {
