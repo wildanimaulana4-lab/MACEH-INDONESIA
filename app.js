@@ -99,6 +99,18 @@ function updateThemeIcon(theme) {
   }
 }
 
+// Hamburger Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburgerBtn = document.getElementById('hamburger-toggle');
+  const mobileShortcuts = document.getElementById('mobile-shortcuts');
+  if (hamburgerBtn && mobileShortcuts) {
+    hamburgerBtn.addEventListener('click', () => {
+      const isVisible = getComputedStyle(mobileShortcuts).display !== 'none';
+      mobileShortcuts.style.display = isVisible ? 'none' : 'flex';
+    });
+  }
+});
+
 // 3. CATALOG RENDER & FILTERING
 function renderProducts() {
   const grid = document.getElementById('products-grid');
