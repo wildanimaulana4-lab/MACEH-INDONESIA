@@ -187,6 +187,10 @@ function initStickyHeader() {
   });
 }
 
+// SVG FLAG DEFINITIONS
+const flagID = `<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; box-shadow: 0 0 0 1px rgba(255,255,255,0.2);"><rect width="20" height="7" fill="#E70011"/><rect y="7" width="20" height="7" fill="#FFFFFF"/></svg>`;
+const flagEN = `<svg width="20" height="14" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" style="border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; box-shadow: 0 0 0 1px rgba(255,255,255,0.2);"><clipPath id="uk-flag-clip"><rect width="60" height="40" rx="3"/></clipPath><g clip-path="url(#uk-flag-clip)"><path d="M0,0 v40 h60 v-40 z" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" stroke-width="4.5"/><path d="M30,0 v40 M0,20 h60" stroke="#fff" stroke-width="12"/><path d="M30,0 v40 M0,20 h60" stroke="#C8102E" stroke-width="7"/></g></svg>`;
+
 // LANGUAGE TOGGLE ENGINE
 function initLanguageToggle() {
   const langBtn = document.getElementById('lang-toggle-btn');
@@ -195,15 +199,19 @@ function initLanguageToggle() {
 
   if (!langBtn) return;
 
+  // Set initial SVG flag
+  langFlag.innerHTML = currentLang === 'id' ? flagID : flagEN;
+  langCode.textContent = currentLang.toUpperCase();
+
   langBtn.addEventListener('click', () => {
     currentLang = (currentLang === 'id') ? 'en' : 'id';
     
-    // Update button text
+    // Update button flag and code
     if (currentLang === 'id') {
-      langFlag.textContent = '🇮🇩';
+      langFlag.innerHTML = flagID;
       langCode.textContent = 'ID';
     } else {
-      langFlag.textContent = '🇬🇧';
+      langFlag.innerHTML = flagEN;
       langCode.textContent = 'EN';
     }
 
