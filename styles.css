@@ -493,6 +493,11 @@ button {
 /* BRAND IDENTITY SHOWCASE */
 .section-identity {
   padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.section-specs {
+  padding-top: 0.5rem;
 }
 
 .spec-full-image-wrapper {
