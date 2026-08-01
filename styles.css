@@ -498,6 +498,16 @@ button {
 
 .section-specs {
   padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.section-why-us {
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.why-us-header {
+  margin-bottom: 1.5rem;
 }
 
 .spec-full-image-wrapper {
