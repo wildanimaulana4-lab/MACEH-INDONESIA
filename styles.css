@@ -498,31 +498,13 @@ button {
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-lg);
   background: var(--bg-surface);
-  cursor: pointer;
 }
 
 .spec-full-image-wrapper img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform var(--transition-normal);
 }
-
-.spec-full-image-wrapper:hover img {
-  transform: scale(1.015);
-}
-
-.zoom-hover-hint {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-size: 0.85rem;
   font-weight: 600;
 }
 
