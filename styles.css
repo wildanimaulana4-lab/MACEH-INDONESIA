@@ -999,9 +999,8 @@ button {
 }
 
 .contact-card-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 4rem;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 3.5rem;
   border-radius: var(--radius-lg);
   background: var(--bg-surface-elevated);
