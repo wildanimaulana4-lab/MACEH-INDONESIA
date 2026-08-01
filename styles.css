@@ -784,6 +784,13 @@ button {
 
 
 
+.process-card-bg-1 {
+  background-image: linear-gradient(rgba(7, 37, 18, 0.25), rgba(4, 24, 11, 0.45)), url('process_step_1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .process-card-bg-2 {
   background-image: linear-gradient(rgba(7, 37, 18, 0.25), rgba(4, 24, 11, 0.45)), url('process_step_2.jpg');
   background-size: cover;
