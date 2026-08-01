@@ -810,10 +810,8 @@ button {
 
 /* WHAT SETS US APART (WHY US) SECTION */
 .why-us-grid {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 3.5rem;
-  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .why-us-left {
