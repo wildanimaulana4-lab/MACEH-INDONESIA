@@ -1332,3 +1332,10 @@ button {
     text-align: center;
   }
 }
+
+@media (max-width: 576px) {
+  .section-specs .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
