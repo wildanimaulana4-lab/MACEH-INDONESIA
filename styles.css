@@ -759,9 +759,14 @@ button {
 
 /* OUR PROCESS SECTION */
 .section-process {
+  padding: 2rem 0;
   background: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-process .section-header {
+  margin-bottom: 1.5rem;
 }
 
 .process-quote {
@@ -778,7 +783,7 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 1.5rem;
 }
 
 .process-card {
