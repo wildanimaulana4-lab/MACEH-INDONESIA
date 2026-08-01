@@ -789,8 +789,8 @@ button {
   box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-.process-card-bg-3 {
-  background-image: linear-gradient(rgba(7, 37, 18, 0.25), rgba(4, 24, 11, 0.45)), url('process_step_3.jpg');
+.process-card-bg-2 {
+  background-image: linear-gradient(rgba(7, 37, 18, 0.25), rgba(4, 24, 11, 0.45)), url('process_step_2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
