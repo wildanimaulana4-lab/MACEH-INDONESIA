@@ -1365,6 +1365,48 @@ img {
   line-height: 1.35;
 }
 
+/* Specification Full Image Card Interactive Hover & Press Sensations */
+.spec-full-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.spec-full-image-wrapper + .spec-full-image-wrapper {
+  margin-top: 2rem;
+}
+
+.spec-full-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spec-full-image-wrapper:hover {
+  transform: translateY(-8px) scale(1.008);
+  border-color: rgba(246, 171, 46, 0.5);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(246, 171, 46, 0.25);
+}
+
+.spec-full-image-wrapper:hover img {
+  transform: scale(1.025);
+}
+
+.spec-full-image-wrapper:active {
+  transform: translateY(-3px) scale(0.985);
+  border-color: rgba(246, 171, 46, 0.8);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(246, 171, 46, 0.4);
+  transition: transform 0.1s ease;
+}
+
 @media (max-width: 900px) {
   .why-us-grid {
     grid-template-columns: 1fr;
