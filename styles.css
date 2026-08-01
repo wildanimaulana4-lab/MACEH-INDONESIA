@@ -144,6 +144,7 @@ button {
   letter-spacing: 0.08em;
   background: linear-gradient(135deg, #F6AB2E 0%, #ffffff 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -523,8 +524,6 @@ button {
   width: 100%;
   height: auto;
   display: block;
-}
-  font-weight: 600;
 }
 
 /* TECHNICAL SPECS SECTION */
