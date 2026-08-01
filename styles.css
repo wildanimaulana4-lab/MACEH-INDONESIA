@@ -268,7 +268,7 @@ img {
 /* Hero Section */
 .hero-section {
   padding-top: 140px;
-  padding-bottom: 90px;
+  padding-bottom: 1.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -429,12 +429,12 @@ img {
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  padding: 2.5rem 3rem;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
   background: var(--bg-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  margin-top: 4rem;
+  margin-top: 1.25rem;
 }
 
 .stat-item {
@@ -459,8 +459,12 @@ img {
 
 /* Section Common Styling */
 .section {
-  padding: 100px 0;
+  padding: 2.5rem 0;
   position: relative;
+}
+
+#identity {
+  padding: 1.25rem 0;
 }
 
 .section-header {
