@@ -1370,13 +1370,8 @@ img {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .why-us-heading {
-    font-size: 2.5rem;
-    text-align: center;
-  }
   .why-us-left {
-    align-items: center;
-    padding-right: 0;
+    display: none;
   }
   .why-us-row-card {
     flex-direction: column;
