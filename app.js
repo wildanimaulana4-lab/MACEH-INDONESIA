@@ -1,587 +1,327 @@
-/* ==========================================================================
-   KALA SPICE CO. - APPLICATION LOGIC & INTERACTIVE SUITE
-   ========================================================================== */
+/**
+ * MACEH INDONESIA — JAVASCRIPT APP LOGIC
+ * Includes i18n Translation Engine, Sticky Header, Image Lightbox, and Interactive Form Validation
+ */
 
-// 1. DATASET: MACEH INDONESIA PRODUCTS
-const SPICE_PRODUCTS = [
-  {
-    id: 'cengkeh-01',
-    name: 'Cengkeh Kering Utuh',
-    category: 'single-origin',
-    categoryLabel: 'Premium Whole Cloves',
-    origin: 'South Sulawesi, Indonesia',
-    price: 35.00,
-    image: 'maceh_promo.jpg',
-    description: 'Cengkeh kering utuh pilihan grade tertinggi dari Sulawesi Selatan. Memberikan aroma hangat, manis pedas yang tajam dan menggugah selera.',
-    flavorProfile: { heat: 65, aroma: 98, earthy: 85, sweet: 70, citrus: 30, smoky: 40 },
-    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
-    batchCode: 'MCH-CK-2026'
-  },
-  {
-    id: 'merica-putih-02',
-    name: 'Merica Putih Utuh',
-    category: 'single-origin',
-    categoryLabel: 'Premium White Peppercorns',
-    origin: 'South Sulawesi, Indonesia',
-    price: 32.00,
-    image: 'maceh_promo.jpg',
-    description: 'Biji merica putih utuh 100% alami tanpa bahan pemutih. Menghasilkan rasa pedas bersih (clean) dan aroma harum khas masakan Nusantara.',
-    flavorProfile: { heat: 85, aroma: 90, earthy: 75, sweet: 20, citrus: 40, smoky: 10 },
-    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
-    batchCode: 'MCH-MP-2026'
-  },
-  {
-    id: 'merica-hitam-03',
-    name: 'Merica Hitam Utuh',
-    category: 'single-origin',
-    categoryLabel: 'Premium Black Peppercorns',
-    origin: 'South Sulawesi, Indonesia',
-    price: 30.00,
-    image: 'maceh_promo.jpg',
-    description: 'Merica hitam utuh beraroma kuat (pungent) dan essensial. Dipetik pada kematangan optimal untuk menjamin kepedasan yang kaya dan otentik.',
-    flavorProfile: { heat: 90, aroma: 95, earthy: 80, sweet: 15, citrus: 50, smoky: 30 },
-    packagingSpec: 'Toples Kaca Kedap Udara (Netto 75g)',
-    batchCode: 'MCH-MH-2026'
-  },
-  {
-    id: 'trio-pack-04',
-    name: 'MACEH Trio Trio Paket Rempah',
-    category: 'gift-sets',
-    categoryLabel: 'Trio Pack Special',
-    origin: 'South Sulawesi, Indonesia',
-    price: 90.00,
-    image: 'maceh_promo.jpg',
-    description: 'Paket spesial 3 toples lengkap: Cengkeh Kering Utuh, Merica Putih Utuh, dan Merica Hitam Utuh dalam satu kotak eksklusif MACEH INDONESIA.',
-    flavorProfile: { heat: 80, aroma: 100, earthy: 85, sweet: 50, citrus: 40, smoky: 30 },
-    packagingSpec: 'Eksklusif 3 Toples Kaca (Netto 3 x 75g)',
-    batchCode: 'MCH-TRIO-2026'
-  }
-];
-
-// STATE MANAGEMENT
-let cartItems = [];
-let currentFilter = 'all';
-let currentSpiceRadar = SPICE_PRODUCTS[0];
-
-// DOM CONTENT LOADED
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  renderProducts();
-  setupFilterListeners();
-  initFlavorRadar();
-  initBlendLab();
-  setupCartDrawer();
-  setupModalListeners();
-});
-
-// 2. THEME SWITCHER LOGIC
-function initTheme() {
-  const toggleBtn = document.getElementById('theme-toggle-btn');
-  const savedTheme = localStorage.getItem('kala_theme') || 'dark';
-  
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  toggleBtn?.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('kala_theme', next);
-    updateThemeIcon(next);
-    showToast(`Switched to ${next.toUpperCase()} mode`);
-  });
-}
-
-function updateThemeIcon(theme) {
-  const icon = document.getElementById('theme-icon');
-  if (icon) {
-    icon.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-}
-
-// 2. LANGUAGE TRANSLATION SYSTEM (ID <-> EN)
-let currentLang = 'id';
-
-const TRANSLATIONS = {
+// I18N TRANSLATION DICTIONARY
+const i18n = {
   id: {
-    flag: '🇮🇩',
-    code: 'ID',
-    toast: 'Bahasa diubah ke Bahasa Indonesia',
-    navIdentity: 'Brand Identity',
-    navSpecs: 'Spesifikasi Produk',
-    navWhyUs: 'Mengapa Kami',
-    navSustain: 'Keberlanjutan',
-    heroBadge: 'MACEH INDONESIA — REMPAH NUSANTARA',
-    heroDesc: 'Kualitas Rempah Nusantara Pilihan.',
-    feat1: '100% Rempah Alami',
-    feat2: 'Dipanen dari Sulawesi Selatan',
-    feat3: 'Kualitas Terbaik untuk Rasa Lezat',
-    ctaExplore: 'Jelajahi Produk',
-    identitySubtitle: 'BRAND IDENTITY SYSTEM',
-    identityTitle: 'Memasak, Penuh Makna, Rasa, & Kebaikan.',
-    identityDesc: 'MACEH Indonesia menghadirkan rempah-rempah premium yang dipilih langsung dari kebun terbaik di Sulawesi.',
-    card1Title: 'Filosofi Keaslian & Kebun Sulawesi',
-    card1Desc: 'Dengan proses alami dan pengolahan yang teliti, kami memastikan setiap rempah menjaga keaslian rasa, aroma, dan manfaatnya untuk setiap masakan.',
-    whyUsTitle: 'What sets us apart?',
-    whyUsDesc: 'Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.',
-    whyUsRow1: 'Bibit unggul menciptakan hasil yang terbaik.',
-    whyUsRow2: 'Premium quality, dari tangan pertama, harga terjaga.',
-    whyUsRow3: 'Proses, sampai pengemasan dilakukan sendiri untuk menjaga kualitas.'
+    navIdentity: "Brand Identity",
+    navSpecs: "Spesifikasi Mutu",
+    navProcess: "Proses Kami",
+    navWhyUs: "Keunggulan",
+    navSustain: "Kemasan Ramah Lingkungan",
+    navContact: "Hubungi Kami",
+    btnInquire: "Diskusi Proyek",
+
+    heroBadge: "100% Rempah Alami Asli Sulawesi Selatan",
+    heroTitleLine1: "A Pinch of Spice,",
+    heroTitleLine2: "Flavor.",
+    heroDesc: "Kualitas Rempah Nusantara Pilihan. Dipetik dari sulur terbaik kebun Sulawesi Selatan, diolah secara alami tanpa bahan kimia untuk rasa dan aroma terbaik.",
+    feat1: "100% Natural Spice (Tanpa Pemutih & Kimia)",
+    feat2: "Sourced Directly from South Sulawesi",
+    feat3: "Best Quality For Better Taste (Mutu Ekspor)",
+    ctaExplore: "Jelajahi Produk & Spesifikasi",
+    ctaContact: "Hubungi Tim Maceh",
+
+    stat1: "Natural Spice",
+    stat2: "South Sulawesi Origin",
+    stat3: "Whole Grain Quality",
+    stat4: "Preserves Aroma & Flavor",
+
+    identityTitle: "Identitas MACEH Indonesia",
+    identityDesc: "Komitmen kami menghadirkan identitas visual rempah mewah Sulawesi dengan standar kualitas tertinggi.",
+
+    whitePepperTitle: "Sulawesi White Pepper (Piper Nigrum)",
+    whitePepperDesc: "Sulawesi white pepper is derived from raw pepper berries (Piper nigrum) that are hulled and sun-dried naturally.",
+    specSize: "Ukuran Biji (Size)",
+    specDensity: "Bulk Density",
+    specDefect: "Defect Value",
+    specMoisture: "Moisture Content",
+
+    blackPepperTitle: "Whole Black Pepper (Piper Nigrum)",
+    blackPepperDesc: "Spesifikasi mutu dan standar kualitas lada hitam murni Sulawesi MACEH INDONESIA. Dikeringkan secara alami, setiap butir diseleksi dengan ukuran yang sama untuk mutu premium.",
+    blackPepperText: "dikeringkan secara alami\nsetiap butir diseleksi dengan\nukuran yang sama\nmutu premium",
+    jarLabel: "MACEH Jar 100g Glass Seal",
+
+    processTitle: "From Farm to Premium Pepper",
+    processQuote: '"Kami mengolah merica dengan hati-hati, mulai dari proses pemetikan hingga pengeringan, dengan menjaga kualitas pada setiap tahap."',
+    step1Title: "Masak",
+    step1Sub: "Selected at the right maturity",
+    step1Desc: "Biji merica dipetik saat berada pada tingkat kematangan paling presisi untuk menjamin kadar minyak atsiri dan aroma yang maksimal.",
+    step2Title: "Petik",
+    step2Sub: "Harvested from selected vines",
+    step2Desc: "Dipetik secara manual oleh petani berpengalaman Sulawesi Selatan dari tanaman sulur lada pilihan berkualitas terbaik.",
+    step3Title: "Rendam & Jemur",
+    step3Sub: "Naturally soaked and sun-dried",
+    step3Desc: "Proses perendaman alami menggunakan air pegunungan murni serta pengeringan di bawah sinar matahari langsung secara higienis.",
+    step4Title: "Pemisahan",
+    step4Sub: "Carefully separated and cleaned",
+    step4Desc: "Pembersihan dan sortasi kerapatan (density grading) untuk memisahkan biji lada utuh 5-6mm bermutu tinggi dari cacat.",
+
+    whyUsTitle: "What sets us apart?",
+    whyUsDesc: "Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.",
+    whyUsRow1: "Bibit unggul menciptakan hasil yang terbaik.",
+    whyUsRow2: "Premium quality, dari tangan pertama, harga terjaga.",
+    whyUsRow3: "Proses, sampai pengemasan dilakukan sendiri untuk menjaga kualitas.",
+
+    sustainTitle: "Zero Waste Packaging Architecture",
+    sustainDesc: "Dirancang untuk dapat diisi ulang secara berkelanjutan. Melindungi kesegaran rempah sekaligus menjaga kelestarian alam.",
+    card1Title: "Miron Violet Glass",
+    card1Desc: "Botol kaca biophotonic khusus yang menyaring radiasi cahaya merusak, mempertahankan kesegaran dan aroma hingga 3 tahun tanpa bahan pengawet.",
+    card2Title: "Plant-Based Refill Pouches",
+    card2Desc: "Kantong isi ulang ramah lingkungan yang 100% dapat terurai secara hayati (compostable) berbasis serat pati jagung alam.",
+    card3Title: "FSC Beech Wood Caps",
+    card3Desc: "Tutup kayu beech tersertifikasi FSC yang dilengkapi cincin silikon alami kedap udara untuk menyegel kelembapan dan keharuman lada.",
+
+    contactHeading: "Start a conversation",
+    contactSubtext: "Tell us a bit about your project, timeline, and what you're looking to achieve.",
+    labelName: "Nama Lengkap",
+    labelEmail: "Email Address",
+    labelMessage: "Leave a message",
+    btnSubmit: "Submit Message",
+
+    footerDesc: "Produsen rempah murni Sulawesi Selatan pilihan mutu ekspor. Lada Putih & Lada Hitam utuh berkualitas tinggi langsung dari petani lokal.",
+    toastSuccess: "Pesan berhasil dikirim! Tim MACEH Indonesia akan segera menghubungi Anda."
   },
   en: {
-    flag: '🇬🇧',
-    code: 'EN',
-    toast: 'Language switched to English',
-    navIdentity: 'Brand Identity',
-    navSpecs: 'Product Specs',
-    navWhyUs: 'Why Us',
-    navSustain: 'Sustainability',
-    heroBadge: 'MACEH INDONESIA — ARCHIPELAGO SPICES',
-    heroDesc: 'Premium Choice of Archipelago Spices.',
-    feat1: '100% Natural Spice',
-    feat2: 'Sourced from South Sulawesi',
-    feat3: 'Best Quality For Better Taste',
-    ctaExplore: 'Explore Products',
-    identitySubtitle: 'BRAND IDENTITY SYSTEM',
-    identityTitle: 'Cooking, Full of Meaning, Flavor, & Goodness.',
-    identityDesc: 'MACEH Indonesia delivers premium spices sourced directly from the finest plantations in Sulawesi.',
-    card1Title: 'Philosophy of Authenticity & Sulawesi Harvest',
-    card1Desc: 'Through natural processing and meticulous crafting, we ensure every spice retains its authentic flavor, aroma, and natural benefits for every dish.',
-    whyUsTitle: 'What sets us apart?',
-    whyUsDesc: 'Commitment to pure spice excellence sourced directly from South Sulawesi plantations.',
-    whyUsRow1: 'Superior seedlings yield the finest harvest results.',
-    whyUsRow2: 'First-hand premium quality with protected fair prices.',
-    whyUsRow3: 'In-house processing through to final packaging preserves peak quality.'
+    navIdentity: "Brand Identity",
+    navSpecs: "Specifications",
+    navProcess: "Our Process",
+    navWhyUs: "Why Choose Us",
+    navSustain: "Eco Packaging",
+    navContact: "Contact Us",
+    btnInquire: "Start Project",
+
+    heroBadge: "100% Natural Spice Sourced From South Sulawesi",
+    heroTitleLine1: "A Pinch of Spice,",
+    heroTitleLine2: "Flavor.",
+    heroDesc: "The Finest Nusantara Spice Selection. Harvested from the finest vines in South Sulawesi, processed naturally without chemicals for rich aroma & flavor.",
+    feat1: "100% Natural Spice (Chemical-Free & Unbleached)",
+    feat2: "Sourced Directly from South Sulawesi",
+    feat3: "Best Quality For Better Taste (Export Grade)",
+    ctaExplore: "Explore Products & Specs",
+    ctaContact: "Contact Maceh Team",
+
+    stat1: "Natural Spice",
+    stat2: "South Sulawesi Origin",
+    stat3: "Whole Grain Quality",
+    stat4: "Preserves Aroma & Flavor",
+
+    identityTitle: "MACEH Indonesia Brand Identity",
+    identityDesc: "Our commitment to showcasing Sulawesi's luxury spice visual identity crafted to the highest quality standards.",
+
+    whitePepperTitle: "Sulawesi White Pepper (Piper Nigrum)",
+    whitePepperDesc: "Sulawesi white pepper is derived from raw pepper berries (Piper nigrum) that are hulled and sun-dried naturally.",
+    specSize: "Grain Size",
+    specDensity: "Bulk Density",
+    specDefect: "Defect Value",
+    specMoisture: "Moisture Content",
+
+    blackPepperTitle: "Whole Black Pepper (Piper Nigrum)",
+    blackPepperDesc: "Quality specifications and technical standards of MACEH INDONESIA pure Sulawesi black pepper. Naturally sun-dried, meticulously density-selected for uniform premium grade.",
+    blackPepperText: "Naturally sun-dried\neach grain selected to\nuniform size\npremium quality",
+    jarLabel: "MACEH Jar 100g Glass Seal",
+
+    processTitle: "From Farm to Premium Pepper",
+    processQuote: '"We carefully process our pepper, from harvesting to drying, maintaining uncompromising quality at every single stage."',
+    step1Title: "Harvest Ripeness",
+    step1Sub: "Selected at the right maturity",
+    step1Desc: "Berries are harvested at peak ripeness to ensure optimal essential oil yield and vibrant aroma profile.",
+    step2Title: "Hand-Picked",
+    step2Sub: "Harvested from selected vines",
+    step2Desc: "Handpicked carefully by experienced South Sulawesi farmers from top-grade pepper vine cultivars.",
+    step3Title: "Soak & Sun-Dry",
+    step3Sub: "Naturally soaked and sun-dried",
+    step3Desc: "Naturally soaked in pristine mountain spring water and sun-dried under clean, controlled outdoor conditions.",
+    step4Title: "Density Sorting",
+    step4Sub: "Carefully separated and cleaned",
+    step4Desc: "Cleaned and density-graded to separate premium 5-6mm whole pepper grains from defects.",
+
+    whyUsTitle: "What sets us apart?",
+    whyUsDesc: "Our unwavering commitment to pure spice excellence directly from South Sulawesi plantations.",
+    whyUsRow1: "Superior seed cultivars produce the finest harvest.",
+    whyUsRow2: "Premium quality sourced direct from first hands at fair value.",
+    whyUsRow3: "Fully in-house managed from cultivation to final packaging.",
+
+    sustainTitle: "Zero Waste Packaging Architecture",
+    sustainDesc: "Engineered for infinite refill loops. Preserving spice potency while protecting our planet.",
+    card1Title: "Miron Violet Glass",
+    card1Desc: "Biophotonic glass bottles filtering harmful light rays to prolong freshness and aroma up to 3 years without chemical additives.",
+    card2Title: "Plant-Based Refill Pouches",
+    card2Desc: "100% home-compostable refill pouches crafted from natural plant-based cornstarch barrier film.",
+    card3Title: "FSC Beech Wood Caps",
+    card3Desc: "FSC-certified sustainable beech wood toppers fitted with natural airtight silicone seals to preserve essential oils.",
+
+    contactHeading: "Start a conversation",
+    contactSubtext: "Tell us a bit about your project, timeline, and what you're looking to achieve.",
+    labelName: "Full Name",
+    labelEmail: "Email Address",
+    labelMessage: "Leave a message",
+    btnSubmit: "Submit Message",
+
+    footerDesc: "Exporter of pure South Sulawesi spices. Premium whole White Pepper & Black Pepper sourced directly from local Indonesian farming communities.",
+    toastSuccess: "Message submitted successfully! MACEH Indonesia team will get back to you shortly."
   }
 };
 
-function toggleLanguage() {
-  currentLang = currentLang === 'id' ? 'en' : 'id';
-  const t = TRANSLATIONS[currentLang];
-  
-  const flagEl = document.getElementById('lang-flag');
-  const codeEl = document.getElementById('lang-code');
-  if (flagEl) flagEl.textContent = t.flag;
-  if (codeEl) codeEl.textContent = t.code;
+let currentLang = 'id';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initStickyHeader();
+  initLanguageToggle();
+  initSmoothScroll();
+  initLightbox();
+  initContactForm();
+});
+
+// STICKY HEADER OBSERVER
+function initStickyHeader() {
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+}
+
+// LANGUAGE TOGGLE ENGINE
+function initLanguageToggle() {
+  const langBtn = document.getElementById('lang-toggle-btn');
+  const langFlag = document.getElementById('lang-flag');
+  const langCode = document.getElementById('lang-code');
+
+  if (!langBtn) return;
+
+  langBtn.addEventListener('click', () => {
+    currentLang = (currentLang === 'id') ? 'en' : 'id';
+    
+    // Update button text
+    if (currentLang === 'id') {
+      langFlag.textContent = '🇮🇩';
+      langCode.textContent = 'ID';
+    } else {
+      langFlag.textContent = '🇬🇧';
+      langCode.textContent = 'EN';
+    }
+
+    // Apply translations
+    applyTranslations(currentLang);
+  });
+}
+
+function applyTranslations(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) el.textContent = t[key];
+    if (dict[key]) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = dict[key];
+      } else {
+        // Handle newlines
+        if (dict[key].includes('\n')) {
+          el.innerHTML = dict[key].replace(/\n/g, '<br>');
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    }
   });
-
-  showToast(t.toast);
 }
 
-// Hamburger & Language Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-  const langBtn = document.getElementById('lang-toggle-btn');
-  if (langBtn) {
-    langBtn.addEventListener('click', toggleLanguage);
-  }
+// SMOOTH SCROLL & ACTIVE LINK OBSERVER
+function initSmoothScroll() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (targetId === '#') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = 80;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-  const hamburgerBtn = document.getElementById('hamburger-toggle');
-  const mobileShortcuts = document.getElementById('mobile-shortcuts');
-  if (hamburgerBtn && mobileShortcuts) {
-    hamburgerBtn.addEventListener('click', () => {
-      const isVisible = getComputedStyle(mobileShortcuts).display !== 'none';
-      mobileShortcuts.style.display = isVisible ? 'none' : 'flex';
-    });
-  }
-});
-
-// 3. CATALOG RENDER & FILTERING
-function renderProducts() {
-  const grid = document.getElementById('products-grid');
-  if (!grid) return;
-
-  const filtered = currentFilter === 'all' 
-    ? SPICE_PRODUCTS 
-    : SPICE_PRODUCTS.filter(p => p.category === currentFilter);
-
-  grid.innerHTML = filtered.map(product => `
-    <div class="product-card" data-id="${product.id}">
-      <div class="product-image-wrap">
-        <span class="product-origin-badge">📍 ${product.origin}</span>
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
-      </div>
-      <div class="product-details">
-        <span class="product-category">${product.categoryLabel}</span>
-        <h3 class="product-name">${product.name}</h3>
-        <p class="product-desc">${product.description}</p>
-        <div class="product-footer">
-          <span class="product-price">$${product.price.toFixed(2)}</span>
-          <button class="btn-add-cart" onclick="addToCart('${product.id}')">
-            <span>+ Add to Cart</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  // Add click to view details modal on card image/title
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (!e.target.closest('.btn-add-cart')) {
-        const id = card.getAttribute('data-id');
-        openQuickViewModal(id);
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     });
   });
 }
 
-function setupFilterListeners() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.getAttribute('data-filter');
-      renderProducts();
+// IMAGE LIGHTBOX MODAL
+function initLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  const backdrop = document.getElementById('lightbox-backdrop');
+  const closeBtn = document.getElementById('lightbox-close-btn');
+  const imgEl = document.getElementById('lightbox-img');
+  const captionEl = document.getElementById('lightbox-caption');
+
+  if (!modal) return;
+
+  document.querySelectorAll('.image-lightbox-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const imgSrc = trigger.getAttribute('data-img-src') || trigger.querySelector('img')?.src;
+      const caption = trigger.getAttribute('data-caption') || trigger.querySelector('img')?.alt || '';
+      
+      if (imgSrc) {
+        imgEl.src = imgSrc;
+        captionEl.textContent = caption;
+        modal.classList.add('active');
+      }
     });
   });
-}
 
-// 4. SVG FLAVOR RADAR CHART GENERATOR
-function initFlavorRadar() {
-  const selectorContainer = document.getElementById('spice-selector-list');
-  if (!selectorContainer) return;
-
-  selectorContainer.innerHTML = SPICE_PRODUCTS.slice(0, 5).map((spice, idx) => `
-    <button class="spice-item-btn ${idx === 0 ? 'active' : ''}" onclick="selectSpiceRadar('${spice.id}')">
-      <div>
-        <strong style="display:block; font-size:1rem;">${spice.name}</strong>
-        <span style="font-size:0.8rem; color:var(--text-muted);">${spice.origin}</span>
-      </div>
-      <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--saffron);">SPEC &gt;</span>
-    </button>
-  `).join('');
-
-  renderRadarChart(SPICE_PRODUCTS[0]);
-}
-
-function selectSpiceRadar(id) {
-  const spice = SPICE_PRODUCTS.find(p => p.id === id);
-  if (!spice) return;
-
-  currentSpiceRadar = spice;
-  document.querySelectorAll('.spice-item-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.getAttribute('onclick').includes(id)) {
-      btn.classList.add('active');
-    }
-  });
-
-  renderRadarChart(spice);
-}
-
-function renderRadarChart(spice) {
-  const svg = document.getElementById('radar-svg');
-  const detailsBox = document.getElementById('radar-details-box');
-  if (!svg) return;
-
-  const profile = spice.flavorProfile;
-  const metrics = [
-    { key: 'heat', label: 'Heat' },
-    { key: 'aroma', label: 'Aroma' },
-    { key: 'earthy', label: 'Earthy' },
-    { key: 'sweet', label: 'Sweet' },
-    { key: 'citrus', label: 'Citrus' },
-    { key: 'smoky', label: 'Smoky' }
-  ];
-
-  const center = 150;
-  const radius = 100;
-
-  // Calculate polygon points
-  const points = metrics.map((m, i) => {
-    const angle = (Math.PI * 2 / metrics.length) * i - Math.PI / 2;
-    const valueRatio = (profile[m.key] || 50) / 100;
-    const r = radius * valueRatio;
-    const x = center + r * Math.cos(angle);
-    const y = center + r * Math.sin(angle);
-    return `${x},${y}`;
-  }).join(' ');
-
-  // Background Web Concentric Rings
-  const rings = [0.25, 0.5, 0.75, 1].map(r => {
-    const rPts = metrics.map((_, i) => {
-      const angle = (Math.PI * 2 / metrics.length) * i - Math.PI / 2;
-      const x = center + (radius * r) * Math.cos(angle);
-      const y = center + (radius * r) * Math.sin(angle);
-      return `${x},${y}`;
-    }).join(' ');
-    return `<polygon points="${rPts}" fill="none" stroke="var(--border-subtle)" stroke-width="1" />`;
-  }).join('');
-
-  // Axis Lines & Labels
-  const axisLines = metrics.map((m, i) => {
-    const angle = (Math.PI * 2 / metrics.length) * i - Math.PI / 2;
-    const x = center + radius * Math.cos(angle);
-    const y = center + radius * Math.sin(angle);
-    const lx = center + (radius + 22) * Math.cos(angle);
-    const ly = center + (radius + 22) * Math.sin(angle);
-    return `
-      <line x1="${center}" y1="${center}" x2="${x}" y2="${y}" stroke="var(--border-subtle)" stroke-width="1" />
-      <text x="${lx}" y="${ly}" fill="var(--text-muted)" font-size="11" font-family="var(--font-mono)" text-anchor="middle" dominant-baseline="middle">${m.label}</text>
-    `;
-  }).join('');
-
-  svg.innerHTML = `
-    ${rings}
-    ${axisLines}
-    <polygon points="${points}" fill="rgba(229, 147, 42, 0.35)" stroke="var(--saffron)" stroke-width="2.5" />
-  `;
-
-  if (detailsBox) {
-    detailsBox.innerHTML = `
-      <h4 class="font-serif" style="font-size:1.5rem; margin-bottom:0.5rem;">${spice.name}</h4>
-      <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:1rem;">Packaging Batch Code: <code style="color:var(--saffron);">${spice.batchCode}</code></p>
-      <p style="font-size:0.95rem;">${spice.packagingSpec}</p>
-    `;
-  }
-}
-
-// 5. CUSTOM BLEND LAB (LIVE LABEL PREVIEW)
-function initBlendLab() {
-  const inputs = ['paprika', 'cardamom', 'cinnamon', 'sumac'];
-  inputs.forEach(id => {
-    const el = document.getElementById(`slider-${id}`);
-    if (el) {
-      el.addEventListener('input', updateBlendLab);
-    }
-  });
-
-  const blendNameInput = document.getElementById('custom-blend-name');
-  if (blendNameInput) {
-    blendNameInput.addEventListener('input', updateBlendLab);
-  }
-
-  updateBlendLab();
-}
-
-function updateBlendLab() {
-  const pVal = parseInt(document.getElementById('slider-paprika')?.value || 40);
-  const cVal = parseInt(document.getElementById('slider-cardamom')?.value || 20);
-  const cnVal = parseInt(document.getElementById('slider-cinnamon')?.value || 25);
-  const sVal = parseInt(document.getElementById('slider-sumac')?.value || 15);
-
-  document.getElementById('val-paprika').textContent = `${pVal}%`;
-  document.getElementById('val-cardamom').textContent = `${cVal}%`;
-  document.getElementById('val-cinnamon').textContent = `${cnVal}%`;
-  document.getElementById('val-sumac').textContent = `${sVal}%`;
-
-  const titleEl = document.getElementById('live-label-title');
-  const blendName = document.getElementById('custom-blend-name')?.value || 'ROYAL VAULT BLEND';
-  if (titleEl) {
-    titleEl.textContent = blendName.toUpperCase();
-  }
-
-  const batchCodeEl = document.getElementById('live-label-batch');
-  if (batchCodeEl) {
-    const hash = (pVal * 7 + cVal * 13 + cnVal * 17 + sVal * 23) % 999;
-    batchCodeEl.textContent = `BATCH #KL-${hash}-CUSTOM`;
-  }
-
-  // Update ratio bar preview
-  const ratioBar = document.getElementById('label-ratio-bar');
-  if (ratioBar) {
-    ratioBar.innerHTML = `
-      <div style="width:${pVal}%; background:var(--terracotta);" title="Paprika"></div>
-      <div style="width:${cVal}%; background:var(--emerald);" title="Cardamom"></div>
-      <div style="width:${cnVal}%; background:var(--saffron);" title="Cinnamon"></div>
-      <div style="width:${sVal}%; background:#7e223b;" title="Sumac"></div>
-    `;
-  }
-}
-
-function saveCustomBlend() {
-  const blendName = document.getElementById('custom-blend-name')?.value || 'Custom Artisan Blend';
-  const customItem = {
-    id: 'custom-' + Date.now(),
-    name: 'Custom: ' + blendName,
-    category: 'custom-blend',
-    categoryLabel: 'Custom Blend',
-    origin: 'Personal Atelier',
-    price: 26.00,
-    image: 'assets/images/brand_mockup.png',
-    description: 'Your personalized small-batch spice formulation sealed in a UV violet glass jar.',
-    packagingSpec: 'Custom Label Amber Jar (100g)'
-  };
-
-  cartItems.push({ product: customItem, quantity: 1 });
-  updateCartUI();
-  openCart();
-  showToast(`Created and added "${blendName}" to cart!`);
-}
-
-// 6. CART DRAWER & E-COMMERCE LOGIC
-function setupCartDrawer() {
-  const cartBtn = document.getElementById('cart-btn');
-  const closeCartBtn = document.getElementById('close-cart-btn');
-  const overlay = document.getElementById('cart-overlay');
-
-  cartBtn?.addEventListener('click', openCart);
-  closeCartBtn?.addEventListener('click', closeCart);
-  overlay?.addEventListener('click', closeCart);
-}
-
-function openCart() {
-  document.getElementById('cart-drawer')?.classList.add('open');
-  document.getElementById('cart-overlay')?.classList.add('open');
-}
-
-function closeCart() {
-  document.getElementById('cart-drawer')?.classList.remove('open');
-  document.getElementById('cart-overlay')?.classList.remove('open');
-}
-
-function addToCart(productId) {
-  const product = SPICE_PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
-
-  const existing = cartItems.find(item => item.product.id === productId);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cartItems.push({ product, quantity: 1 });
-  }
-
-  updateCartUI();
-  openCart();
-  showToast(`Added ${product.name} to cart`);
-}
-
-function updateCartUI() {
-  const countBadge = document.getElementById('cart-count');
-  const body = document.getElementById('cart-body');
-  const totalEl = document.getElementById('cart-total');
-
-  const totalCount = cartItems.reduce((acc, i) => acc + i.quantity, 0);
-  if (countBadge) countBadge.textContent = totalCount;
-
-  const totalPrice = cartItems.reduce((acc, i) => acc + (i.product.price * i.quantity), 0);
-  if (totalEl) totalEl.textContent = `$${totalPrice.toFixed(2)}`;
-
-  if (!body) return;
-
-  if (cartItems.length === 0) {
-    body.innerHTML = `
-      <div style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
-        <p style="font-size:2rem; margin-bottom:1rem;">🌶️</p>
-        <p style="font-family:var(--font-serif); font-size:1.2rem;">Your Atelier Cart is Empty</p>
-        <p style="font-size:0.85rem; margin-top:0.5rem;">Explore our packaging collection to add single-origin spices.</p>
-      </div>
-    `;
-    return;
-  }
-
-  body.innerHTML = cartItems.map(item => `
-    <div class="cart-item">
-      <img src="${item.product.image}" alt="${item.product.name}" class="cart-item-img">
-      <div class="cart-item-info">
-        <h4 class="cart-item-title">${item.product.name}</h4>
-        <span class="cart-item-price">$${item.product.price.toFixed(2)}</span>
-        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
-          <button onclick="changeQty('${item.product.id}', -1)" style="border:1px solid var(--border-subtle); padding:2px 8px; border-radius:4px;">-</button>
-          <span style="font-size:0.9rem; font-weight:600;">${item.quantity}</span>
-          <button onclick="changeQty('${item.product.id}', 1)" style="border:1px solid var(--border-subtle); padding:2px 8px; border-radius:4px;">+</button>
-        </div>
-      </div>
-      <button onclick="removeItem('${item.product.id}')" style="color:var(--text-muted); font-size:1.2rem;">&times;</button>
-    </div>
-  `).join('');
-}
-
-function changeQty(id, delta) {
-  const item = cartItems.find(i => i.product.id === id);
-  if (!item) return;
-
-  item.quantity += delta;
-  if (item.quantity <= 0) {
-    cartItems = cartItems.filter(i => i.product.id !== id);
-  }
-  updateCartUI();
-}
-
-function removeItem(id) {
-  cartItems = cartItems.filter(i => i.product.id !== id);
-  updateCartUI();
-  showToast('Item removed');
-}
-
-function checkout() {
-  if (cartItems.length === 0) {
-    showToast('Your cart is empty');
-    return;
-  }
-  alert('Thank you for sampling KALA SPICE CO.! This is a Behance exhibition checkout demonstration.');
-  cartItems = [];
-  updateCartUI();
-  closeCart();
-}
-
-// 7. QUICK VIEW MODAL
-function setupModalListeners() {
-  const backdrop = document.getElementById('modal-backdrop');
-  const closeBtn = document.getElementById('close-modal-btn');
+  const closeModal = () => modal.classList.remove('active');
 
   backdrop?.addEventListener('click', closeModal);
   closeBtn?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 }
 
-function openQuickViewModal(productId) {
-  const product = SPICE_PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
+// CONTACT FORM SUBMISSION
+function initContactForm() {
+  const form = document.getElementById('maceh-contact-form');
+  if (!form) return;
 
-  const modal = document.getElementById('quick-modal');
-  const body = document.getElementById('modal-body');
-  if (!modal || !body) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const nameInput = document.getElementById('form-name');
+    const emailInput = document.getElementById('form-email');
+    const messageInput = document.getElementById('form-message');
 
-  body.innerHTML = `
-    <div>
-      <img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-    </div>
-    <div style="display:flex; flex-direction:column; justify-content:center;">
-      <span class="product-category" style="margin-bottom:0.5rem;">${product.categoryLabel}</span>
-      <h2 class="font-serif" style="font-size:2.2rem; margin-bottom:1rem;">${product.name}</h2>
-      <p style="color:var(--text-muted); font-size:1rem; margin-bottom:1.5rem;">${product.description}</p>
-      
-      <div style="background:var(--bg-card); padding:1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
-        <h5 style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--saffron); margin-bottom:0.4rem;">Packaging Architecture</h5>
-        <p style="font-size:0.9rem; font-family:var(--font-mono);">${product.packagingSpec}</p>
-      </div>
-
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <span class="font-serif" style="font-size:2rem; font-weight:700;">$${product.price.toFixed(2)}</span>
-        <button class="btn-primary" onclick="addToCart('${product.id}'); closeModal();">
-          <span>Add to Atelier Cart</span>
-        </button>
-      </div>
-    </div>
-  `;
-
-  modal.classList.add('open');
+    if (nameInput.value && emailInput.value && messageInput.value) {
+      showToast(i18n[currentLang].toastSuccess);
+      form.reset();
+    }
+  });
 }
 
-function closeModal() {
-  document.getElementById('quick-modal')?.classList.remove('open');
-}
-
-// 8. TOAST SYSTEM
-function showToast(msg) {
+// TOAST NOTIFICATION SCRIPT
+function showToast(message) {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<span>🌶️</span> <span>${msg}</span>`;
+  toast.innerHTML = `<span>✅</span> <div>${message}</div>`;
 
   container.appendChild(toast);
 
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateX(100%)';
-    toast.style.transition = 'all 0.3s ease';
+    toast.style.transition = 'all 0.3s ease-out';
     setTimeout(() => toast.remove(), 300);
-  }, 2800);
+  }, 4000);
 }

@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MACEH INDONESIA — Rempah Nusantara Pilihan</title>
-  <meta name="description" content="Kualitas Rempah Nusantara Pilihan 100% Natural Spice sourced from South Sulawesi. Explore MACEH Indonesia collection.">
-  <meta property="og:title" content="MACEH INDONESIA — Rempah Nusantara Pilihan">
-  <meta property="og:description" content="100% Natural Spice, Sourced from South Sulawesi. Best Quality For Better Taste.">
+  <title>MACEH INDONESIA — Rempah Nusantara Sulawesi Premium</title>
+  <meta name="description" content="MACEH Indonesia — Rempah Nusantara pilihan 100% Natural Spice sourced from South Sulawesi. Sulawesi White Pepper & Whole Black Pepper Premium Quality.">
+  <meta property="og:title" content="MACEH INDONESIA — Rempah Nusantara Sulawesi Premium">
+  <meta property="og:description" content="100% Natural Spice, Sourced from South Sulawesi. Premium Quality White & Black Pepper.">
   <meta property="og:image" content="spice_jars_display.png">
   
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,69 +22,88 @@
   <!-- SITE HEADER / NAVIGATION -->
   <header class="site-header" id="site-header">
     <div class="container nav-wrapper">
-      <a href="#" class="brand-logo" style="display:flex; align-items:center; gap:0.75rem;">
-        <img src="maceh_logo.png" alt="MACEH Logo" style="height: 48px; width: auto; object-fit: contain;">
-        <span class="brand-name-gold">MACEH INDONESIA</span>
+      <a href="#" class="brand-logo">
+        <img src="maceh_logo.png" alt="MACEH Logo" class="brand-img">
+        <div class="brand-text">
+          <span class="brand-name-gold">MACEH</span>
+          <span class="brand-sub">INDONESIA</span>
+        </div>
       </a>
 
-      <nav>
+      <nav class="nav-menu">
         <ul class="nav-links">
           <li><a href="#identity" class="nav-link" data-i18n="navIdentity">Brand Identity</a></li>
-          <li><a href="#specs" class="nav-link" data-i18n="navSpecs">Product Specs</a></li>
-          <li><a href="#why-us" class="nav-link" data-i18n="navWhyUs">Why Us</a></li>
-          <li><a href="#sustainability" class="nav-link" data-i18n="navSustain">Sustainability</a></li>
+          <li><a href="#specs" class="nav-link" data-i18n="navSpecs">Spesifikasi Mutu</a></li>
+          <li><a href="#process" class="nav-link" data-i18n="navProcess">Proses Kami</a></li>
+          <li><a href="#why-us" class="nav-link" data-i18n="navWhyUs">Keunggulan</a></li>
+          <li><a href="#sustainability" class="nav-link" data-i18n="navSustain">Kemasan Ramah Lingkungan</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="navContact">Hubungi Kami</a></li>
         </ul>
       </nav>
-      <div class="nav-actions-mobile">
-        <div class="lang-selector" id="lang-toggle-btn" style="cursor: pointer;" title="Ganti Bahasa / Switch Language">
-          <span id="lang-flag" style="font-size: 1.1rem;">🇮🇩</span>
-          <span id="lang-code" style="font-size: 0.8rem; font-weight: 700; color: #fff;">ID</span>
-        </div>
+
+      <div class="nav-actions">
+        <button class="lang-selector" id="lang-toggle-btn" type="button" aria-label="Ganti Bahasa" title="Switch Language">
+          <span id="lang-flag">🇮🇩</span>
+          <span id="lang-code">ID</span>
+        </button>
+
+        <a href="#contact" class="btn-nav-cta" data-i18n="btnInquire">Diskusi Proyek</a>
       </div>
     </div>
   </header>
 
-
-
   <!-- HERO SECTION -->
   <section class="hero-section" id="hero">
+    <div class="hero-bg-glow"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span data-i18n="heroBadge">100% Rempah Alami Asli Sulawesi Selatan</span>
+          </div>
+
           <h1 class="hero-title">
-            <span class="text-maceh-yellow">A Pinch of Spice,</span><br>
-            <span class="text-white">a World of <span class="text-maceh-orange">Flavor.</span></span>
+            <span class="text-maceh-yellow" data-i18n="heroTitleLine1">A Pinch of Spice,</span><br>
+            <span class="text-white">a World of <span class="text-maceh-orange" data-i18n="heroTitleLine2">Flavor.</span></span>
           </h1>
+          
           <p class="hero-description" data-i18n="heroDesc">
-            Kualitas Rempah Nusantara Pilihan.
+            Kualitas Rempah Nusantara Pilihan. Dipetik dari sulur terbaik kebun Sulawesi Selatan, diolah secara alami tanpa bahan kimia untuk rasa dan aroma terbaik.
           </p>
 
           <ul class="maceh-feature-list">
             <li>
               <span class="check-icon">✓</span>
-              <span data-i18n="feat1">100% Natural Spice</span>
+              <span data-i18n="feat1">100% Natural Spice (Tanpa Pemutih & Kimia)</span>
             </li>
             <li>
               <span class="check-icon">✓</span>
-              <span data-i18n="feat2">Sourced from South Sulawesi</span>
+              <span data-i18n="feat2">Sourced Directly from South Sulawesi</span>
             </li>
             <li>
               <span class="check-icon">✓</span>
-              <span data-i18n="feat3">Best Quality For Better Taste</span>
+              <span data-i18n="feat3">Best Quality For Better Taste (Mutu Ekspor)</span>
             </li>
           </ul>
 
           <div class="hero-cta">
-            <a href="#identity" class="btn-primary" style="background: linear-gradient(135deg, #EB5527, #c43c13);">
-              <span data-i18n="ctaExplore">Jelajahi Produk</span>
-              <span>&rarr;</span>
+            <a href="#specs" class="btn-primary">
+              <span data-i18n="ctaExplore">Jelajahi Produk & Spesifikasi</span>
+              <span class="btn-arrow">&rarr;</span>
+            </a>
+            <a href="#contact" class="btn-secondary">
+              <span data-i18n="ctaContact">Hubungi Tim Maceh</span>
             </a>
           </div>
         </div>
 
         <div class="hero-visual">
-          <div class="hero-image-card">
+          <div class="hero-image-card image-lightbox-trigger" data-img-src="maceh_promo.jpg" data-caption="MACEH Indonesia Promo Banner">
             <img src="maceh_promo.jpg" alt="MACEH Indonesia - Rempah Nusantara Pilihan">
+            <div class="card-overlay-badge">
+              <span>MACEH PREMIUM</span>
+            </div>
           </div>
         </div>
       </div>
@@ -88,60 +112,116 @@
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-value">100%</div>
-          <div class="stat-label">Natural Spice</div>
+          <div class="stat-label" data-i18n="stat1">Natural Spice</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">SULAWESI</div>
-          <div class="stat-label">South Sulawesi Origin</div>
+          <div class="stat-label" data-i18n="stat2">South Sulawesi Origin</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">PREMIUM</div>
-          <div class="stat-label">Whole Grain Quality</div>
+          <div class="stat-label" data-i18n="stat3">Whole Grain Quality</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">AIRTIGHT</div>
-          <div class="stat-label">Preserves Aroma & Flavor</div>
+          <div class="stat-label" data-i18n="stat4">Preserves Aroma & Flavor</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SECTION 1: BRAND IDENTITY SHOWCASE -->
-  <section class="section" id="identity">
+  <section class="section section-identity" id="identity">
     <div class="container">
-      <div class="spec-full-image-wrapper">
+      <div class="section-header text-center">
+        <span class="section-subtitle tracking-widest">BRAND IDENTITY</span>
+        <h2 class="section-title" data-i18n="identityTitle">Identitas MACEH Indonesia</h2>
+        <p class="section-desc" data-i18n="identityDesc">Komitmen kami menghadirkan identitas visual rempah mewah Sulawesi dengan standar kualitas tertinggi.</p>
+      </div>
+
+      <div class="spec-full-image-wrapper image-lightbox-trigger" data-img-src="maceh_identity.jpg" data-caption="MACEH Indonesia Brand Identity Showcase">
         <img src="maceh_identity.jpg" alt="MACEH Indonesia Brand Identity Showcase" loading="lazy">
+        <div class="zoom-hover-hint">
+          <span>🔍 Klik untuk memperbesar</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: PREMIUM WHITE PEPPER SPECIFICATIONS -->
-  <section class="section" id="specs">
+  <!-- SECTION 2: TECHNICAL SPECIFICATIONS (WHITE & BLACK PEPPER) -->
+  <section class="section section-specs" id="specs">
     <div class="container">
+      <!-- White Pepper Header -->
       <div class="section-header">
-        <span class="section-subtitle tracking-widest" style="color: #7BB342;">QUALITY & TECHNICAL SPECIFICATIONS</span>
-        <h2 class="section-title">Premium White Pepper (Piper Nigrum)</h2>
-        <p class="section-desc">Spesifikasi mutu dan standar kualitas lada putih murni Sulawesi MACEH INDONESIA.</p>
+        <span class="section-subtitle tracking-widest text-accent-green">QUALITY & TECHNICAL SPECIFICATIONS</span>
+        <h2 class="section-title" data-i18n="whitePepperTitle">Sulawesi White Pepper (Piper Nigrum)</h2>
+        <p class="section-desc" data-i18n="whitePepperDesc">
+          Sulawesi white pepper derived from raw pepper berries (Piper nigrum) that are hulled and sun-dried naturally.
+        </p>
       </div>
 
-      <div class="spec-full-image-wrapper">
-        <img src="white_pepper_spec.jpg" alt="Premium White Pepper Specification MACEH Indonesia" loading="lazy">
+      <!-- White Pepper Specs Grid + Showcase -->
+      <div class="specs-highlight-container">
+        <div class="specs-metrics-grid">
+          <div class="spec-card">
+            <div class="spec-icon">📏</div>
+            <div class="spec-info">
+              <span class="spec-label" data-i18n="specSize">Ukuran Biji (Size)</span>
+              <span class="spec-val">5 - 6 mm</span>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-icon">⚖️</div>
+            <div class="spec-info">
+              <span class="spec-label" data-i18n="specDensity">Bulk Density</span>
+              <span class="spec-val">600 G/L – 620 G/L</span>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-icon">🛡️</div>
+            <div class="spec-info">
+              <span class="spec-label" data-i18n="specDefect">Defect Value</span>
+              <span class="spec-val">&lt; 5%</span>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-icon">💧</div>
+            <div class="spec-info">
+              <span class="spec-label" data-i18n="specMoisture">Moisture Content</span>
+              <span class="spec-val">&lt; 12%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-full-image-wrapper image-lightbox-trigger" data-img-src="white_pepper_spec.jpg" data-caption="Sulawesi White Pepper Specification Sheet">
+          <img src="white_pepper_spec.jpg" alt="Premium White Pepper Specification MACEH Indonesia" loading="lazy">
+          <div class="zoom-hover-hint">
+            <span>🔍 Klik Spesifikasi Lada Putih</span>
+          </div>
+        </div>
       </div>
 
-      <div class="section-header" style="margin-top: 4rem;">
-        <span class="section-subtitle tracking-widest" style="color: #7BB342;">QUALITY & TECHNICAL SPECIFICATIONS</span>
-        <h2 class="section-title">Whole Black Pepper (Piper Nigrum)</h2>
-        <p class="section-desc">Spesifikasi mutu dan standar kualitas lada hitam murni Sulawesi MACEH INDONESIA.</p>
+      <!-- Black Pepper Header -->
+      <div class="section-header" style="margin-top: 2rem;">
+        <span class="section-subtitle tracking-widest text-accent-orange">QUALITY & TECHNICAL SPECIFICATIONS</span>
+        <h2 class="section-title" data-i18n="blackPepperTitle">Whole Black Pepper (Piper Nigrum)</h2>
+        <p class="section-desc" data-i18n="blackPepperDesc">
+          Spesifikasi mutu dan standar kualitas lada hitam murni Sulawesi MACEH INDONESIA. Dikeringkan secara alami, setiap butir diseleksi dengan ukuran yang sama untuk mutu premium.
+        </p>
       </div>
 
+      <!-- Black Pepper Layout Grid -->
       <div class="black-pepper-grid">
         <!-- Left Column: Top Main Card + Bottom 2 Cards -->
         <div class="black-pepper-left-col">
-          <!-- Top Card: Specs Text + Woman Harvest Photo -->
+          <!-- Top Card: Specs Text + Berries Photo -->
           <div class="black-pepper-main-card">
             <div class="black-pepper-card-content">
               <h3 class="black-pepper-card-title">Whole<br>Black Pepper</h3>
-              <p class="black-pepper-card-desc">
+              <p class="black-pepper-card-desc" data-i18n="blackPepperText">
                 dikeringkan secara alami<br>
                 setiap butir diseleksi dengan<br>
                 ukuran yang sama<br>
@@ -153,24 +233,26 @@
                   <span class="black-pepper-spec-val">550 G/L – 600 G/L</span>
                 </div>
                 <div class="black-pepper-spec-row">
-                  <span class="black-pepper-spec-label">Defect Value &lt; 5%</span>
+                  <span class="black-pepper-spec-label">Defect Value</span>
+                  <span class="black-pepper-spec-val">&lt; 5%</span>
                 </div>
                 <div class="black-pepper-spec-row">
-                  <span class="black-pepper-spec-label">Moisture Content &lt; 12%</span>
+                  <span class="black-pepper-spec-label">Moisture Content</span>
+                  <span class="black-pepper-spec-val">&lt; 12%</span>
                 </div>
               </div>
             </div>
-            <div class="black-pepper-card-img">
+            <div class="black-pepper-card-img image-lightbox-trigger" data-img-src="black_pepper_berries_top.png" data-caption="Whole Black Pepper Berries MACEH">
               <img src="black_pepper_berries_top.png" alt="Whole Black Pepper Berries MACEH" loading="lazy">
             </div>
           </div>
 
           <!-- Bottom Row: 2 Sub Cards -->
           <div class="black-pepper-bottom-row">
-            <div class="black-pepper-sub-card">
+            <div class="black-pepper-sub-card image-lightbox-trigger" data-img-src="black_pepper_sub1.png" data-caption="Proses Pengeringan Lada Hitam MACEH">
               <img src="black_pepper_sub1.png" alt="Proses Pengeringan Lada MACEH" loading="lazy">
             </div>
-            <div class="black-pepper-sub-card">
+            <div class="black-pepper-sub-card image-lightbox-trigger" data-img-src="black_pepper_sub2.png" data-caption="Biji Merica Hitam Utuh MACEH">
               <img src="black_pepper_sub2.png" alt="Biji Merica Hitam Utuh MACEH" loading="lazy">
             </div>
           </div>
@@ -178,12 +260,14 @@
 
         <!-- Right Column: Jar Product Card -->
         <div class="black-pepper-jar-card">
-          <div class="black-pepper-jar-img-wrap">
+          <div class="black-pepper-jar-img-wrap image-lightbox-trigger" data-img-src="black_pepper_jar.png" data-caption="Kemasan Jar Merica Hitam MACEH">
             <img src="black_pepper_jar.png" alt="MACEH Merica Hitam Utuh Jar" loading="lazy">
           </div>
           <div class="black-pepper-jar-footer">
-            <div class="black-pepper-search-bar"></div>
-            <button class="black-pepper-btn-arrow" aria-label="Lihat Detail Produk">
+            <div class="black-pepper-search-bar">
+              <span data-i18n="jarLabel">MACEH Jar 100g Glass Seal</span>
+            </div>
+            <button class="black-pepper-btn-arrow image-lightbox-trigger" data-img-src="black_pepper_jar.png" data-caption="MACEH Glass Jar Packaging" aria-label="Lihat Detail Produk">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -194,14 +278,67 @@
     </div>
   </section>
 
+  <!-- SECTION 3: OUR PROCESS (FROM FARM TO PREMIUM PEPPER) -->
+  <section class="section section-process" id="process">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle tracking-widest text-accent-green">OUR PROCESS</span>
+        <h2 class="section-title" data-i18n="processTitle">From Farm to Premium Pepper</h2>
+        <p class="process-quote" data-i18n="processQuote">
+          "Kami mengolah merica dengan hati-hati, mulai dari proses pemetikan hingga pengeringan, dengan menjaga kualitas pada setiap tahap."
+        </p>
+      </div>
 
+      <!-- 4 Step Process Cards Grid -->
+      <div class="process-steps-grid">
+        <!-- Step 1 -->
+        <div class="process-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title" data-i18n="step1Title">Masak</h3>
+          <span class="step-subtitle" data-i18n="step1Sub">Selected at the right maturity</span>
+          <p class="step-desc" data-i18n="step1Desc">
+            Biji merica dipetik saat berada pada tingkat kematangan paling presisi untuk menjamin kadar minyak atsiri dan aroma yang maksimal.
+          </p>
+        </div>
 
+        <!-- Step 2 -->
+        <div class="process-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title" data-i18n="step2Title">Petik</h3>
+          <span class="step-subtitle" data-i18n="step2Sub">Harvested from selected vines</span>
+          <p class="step-desc" data-i18n="step2Desc">
+            Dipetik secara manual oleh petani berpengalaman Sulawesi Selatan dari tanaman sulur lada pilihan berkualitas terbaik.
+          </p>
+        </div>
 
-  <!-- SECTION 3: WHAT SETS US APART? -->
-  <section class="section" id="why-us" style="background: #04180b;">
+        <!-- Step 3 -->
+        <div class="process-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title" data-i18n="step3Title">Rendam & Jemur</h3>
+          <span class="step-subtitle" data-i18n="step3Sub">Naturally soaked and sun-dried</span>
+          <p class="step-desc" data-i18n="step3Desc">
+            Proses perendaman alami menggunakan air pegunungan murni serta pengeringan di bawah sinar matahari langsung secara higienis.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-card">
+          <div class="step-number">04</div>
+          <h3 class="step-title" data-i18n="step4Title">Pemisahan</h3>
+          <span class="step-subtitle" data-i18n="step4Sub">Carefully separated and cleaned</span>
+          <p class="step-desc" data-i18n="step4Desc">
+            Pembersihan dan sortasi kerapatan (density grading) untuk memisahkan biji lada utuh 5-6mm bermutu tinggi dari cacat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: WHAT SETS US APART? -->
+  <section class="section section-why-us" id="why-us">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle tracking-widest" style="color: #7BB342;">KEUNGGULAN MACEH</span>
+        <span class="section-subtitle tracking-widest text-accent-gold">KEUNGGULAN MACEH</span>
         <h2 class="section-title" data-i18n="whyUsTitle">What sets us apart?</h2>
         <p class="section-desc" data-i18n="whyUsDesc">Komitmen keunggulan kualitas rempah murni langsung dari kebun Sulawesi Selatan.</p>
       </div>
@@ -220,7 +357,7 @@
         <!-- Right Side: 3 Separate Feature Rows -->
         <div class="why-us-rows">
           <!-- Row 1 -->
-          <div class="why-us-row-card">
+          <div class="why-us-row-card image-lightbox-trigger" data-img-src="why_us_1.png" data-caption="Bibit Unggul MACEH">
             <div class="why-us-img-wrap">
               <img src="why_us_1.png" alt="Bibit unggul lada & cengkeh MACEH" loading="lazy">
             </div>
@@ -230,7 +367,7 @@
           </div>
 
           <!-- Row 2 -->
-          <div class="why-us-row-card">
+          <div class="why-us-row-card image-lightbox-trigger" data-img-src="why_us_2.png" data-caption="Premium Quality MACEH">
             <div class="why-us-img-wrap">
               <img src="why_us_2.png" alt="Premium quality lada Sulawesi MACEH" loading="lazy">
             </div>
@@ -240,7 +377,7 @@
           </div>
 
           <!-- Row 3 -->
-          <div class="why-us-row-card">
+          <div class="why-us-row-card image-lightbox-trigger" data-img-src="why_us_3.png" data-caption="Proses Mandiri MACEH">
             <div class="why-us-img-wrap">
               <img src="why_us_3.png" alt="Proses pengolahan lada alami MACEH" loading="lazy">
             </div>
@@ -253,106 +390,158 @@
     </div>
   </section>
 
-  <!-- SECTION 4: SUSTAINABILITY & MATERIALS -->
-  <section class="section" id="sustainability">
+  <!-- SECTION 5: SUSTAINABILITY & MATERIALS -->
+  <section class="section section-sustainability" id="sustainability">
     <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle tracking-widest">ECO-INNOVATION</span>
-        <h2 class="section-title">Zero Waste Packaging Architecture</h2>
-        <p class="section-desc">Designed to be refilled infinitely. Our circular packaging loop protects both flavor and planet.</p>
+      <div class="section-header text-center">
+        <span class="section-subtitle tracking-widest text-accent-green">ECO-INNOVATION</span>
+        <h2 class="section-title" data-i18n="sustainTitle">Zero Waste Packaging Architecture</h2>
+        <p class="section-desc" data-i18n="sustainDesc">Dirancang untuk dapat diisi ulang secara berkelanjutan. Melindungi kesegaran rempah sekaligus menjaga kelestarian alam.</p>
       </div>
 
       <div class="products-grid">
-        <div class="behance-card">
-          <span style="font-size:2rem; display:block; margin-bottom:1rem;">🫙</span>
-          <h3 class="font-serif" style="font-size:1.5rem; margin-bottom:0.5rem;">Miron Violet Glass</h3>
-          <p style="color:var(--text-muted); font-size:0.95rem;">
-            Engineered biophotonic glass that filters solar radiation to prolong potency for up to 3 years without chemical preservatives.
+        <div class="sustain-card">
+          <div class="sustain-icon">🫙</div>
+          <h3 class="font-serif sustain-title" data-i18n="card1Title">Miron Violet Glass</h3>
+          <p class="sustain-text" data-i18n="card1Desc">
+            Botol kaca biophotonic khusus yang menyaring radiasi cahaya merusak, mempertahankan kesegaran dan aroma hingga 3 tahun tanpa bahan pengawet.
           </p>
         </div>
 
-        <div class="behance-card">
-          <span style="font-size:2rem; display:block; margin-bottom:1rem;">🌱</span>
-          <h3 class="font-serif" style="font-size:1.5rem; margin-bottom:0.5rem;">Plant-Based Refill Pouches</h3>
-          <p style="color:var(--text-muted); font-size:0.95rem;">
-            100% home-compostable Kraft refill envelopes lined with bio-laminated cornstarch barrier film.
+        <div class="sustain-card">
+          <div class="sustain-icon">🌱</div>
+          <h3 class="font-serif sustain-title" data-i18n="card2Title">Plant-Based Refill Pouches</h3>
+          <p class="sustain-text" data-i18n="card2Desc">
+            Kantong isi ulang ramah lingkungan yang 100% dapat terurai secara hayati (compostable) berbasis serat pati jagung alam.
           </p>
         </div>
 
-        <div class="behance-card">
-          <span style="font-size:2rem; display:block; margin-bottom:1rem;">🪵</span>
-          <h3 class="font-serif" style="font-size:1.5rem; margin-bottom:0.5rem;">FSC Beech Wood Caps</h3>
-          <p style="color:var(--text-muted); font-size:0.95rem;">
-            Sustainably harvested beech wood toppers fitted with natural silicone airtight rings for maximum moisture seal.
+        <div class="sustain-card">
+          <div class="sustain-icon">🪵</div>
+          <h3 class="font-serif sustain-title" data-i18n="card3Title">FSC Beech Wood Caps</h3>
+          <p class="sustain-text" data-i18n="card3Desc">
+            Tutup kayu beech tersertifikasi FSC yang dilengkapi cincin silikon alami kedap udara untuk menyegel kelembapan dan keharuman lada.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer style="background:var(--bg-surface); border-top:1px solid var(--border-subtle); padding:80px 0 40px 0;">
+  <!-- SECTION 6: CONTACT & INQUIRY FORM ("START A CONVERSATION") -->
+  <section class="section section-contact" id="contact">
     <div class="container">
+      <div class="contact-card-wrapper">
+        <div class="contact-info">
+          <span class="section-subtitle tracking-widest text-accent-orange">GET IN TOUCH</span>
+          <h2 class="contact-heading" data-i18n="contactHeading">Start a conversation</h2>
+          <p class="contact-subtext" data-i18n="contactSubtext">
+            Tell us a bit about your project, timeline, and what you're looking to achieve.
+          </p>
+
+          <div class="contact-details-list">
+            <div class="contact-detail-item">
+              <span class="detail-icon">📍</span>
+              <div>
+                <strong>Asal Komoditas:</strong>
+                <p>Sulawesi Selatan, Indonesia</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <span class="detail-icon">✉️</span>
+              <div>
+                <strong>Email Informasi & Penjualan:</strong>
+                <p>info@macehindonesia.com</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <span class="detail-icon">📞</span>
+              <div>
+                <strong>Layanan Pelanggan / Whatsapp:</strong>
+                <p>+62 812-3456-7890</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-container">
+          <form class="maceh-form" id="maceh-contact-form">
+            <div class="form-group">
+              <label for="form-name" data-i18n="labelName">Nama Lengkap</label>
+              <input type="text" id="form-name" class="form-input" placeholder="Masukkan nama Anda" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-email" data-i18n="labelEmail">Email Address</label>
+              <input type="email" id="form-email" class="form-input" placeholder="email@domain.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-message" data-i18n="labelMessage">Leave a message</label>
+              <textarea id="form-message" class="form-textarea" rows="4" placeholder="Tuliskan kebutuhan rempah atau pertanyaan proyek Anda di sini..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary btn-submit-form" id="submit-btn">
+              <span data-i18n="btnSubmit">Submit Message</span>
+              <span class="btn-arrow">&rarr;</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SITE FOOTER -->
-  <footer class="section" style="border-top:1px solid var(--border-subtle); padding-top:4rem; padding-bottom:2rem; background: #072512;">
+  <footer class="site-footer">
     <div class="container">
-      <div style="display:grid; grid-template-columns:2fr 1fr; gap:3rem; margin-bottom:4rem;">
+      <div class="footer-top-grid">
         <div>
-          <a href="#" class="brand-logo" style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-            <img src="maceh_logo.png" alt="MACEH Logo" style="height: 38px; width: auto; object-fit: contain;">
-            <span class="brand-name-gold">MACEH INDONESIA</span>
+          <a href="#" class="brand-logo footer-brand">
+            <img src="maceh_logo.png" alt="MACEH Logo" class="brand-img">
+            <div class="brand-text">
+              <span class="brand-name-gold">MACEH INDONESIA</span>
+            </div>
           </a>
-          <p style="color:var(--text-muted); font-size:0.9rem; max-width:320px; line-height:1.6;">
-            A Behance brand identity showcase celebrating artisanal spice harvests and luxury Sulawesi packaging architecture.
+          <p class="footer-desc" data-i18n="footerDesc">
+            Produsen rempah murni Sulawesi Selatan pilihan mutu ekspor. Lada Putih & Lada Hitam utuh berkualitas tinggi langsung dari petani lokal.
           </p>
         </div>
 
-        <div>
-          <h5 style="font-size:0.85rem; color:#F6AB2E; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1rem; font-weight:700;">EXHIBITION</h5>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.9rem; color:var(--text-muted);">
-            <li><a href="#identity" style="color:#d0d0d0; transition:color 0.2s;" onmouseover="this.style.color='#F6AB2E'" onmouseout="this.style.color='#d0d0d0'">Identity Specs</a></li>
-            <li><a href="#specs" style="color:#d0d0d0; transition:color 0.2s;" onmouseover="this.style.color='#F6AB2E'" onmouseout="this.style.color='#d0d0d0'">Product Specs</a></li>
-            <li><a href="#sustainability" style="color:#d0d0d0; transition:color 0.2s;" onmouseover="this.style.color='#F6AB2E'" onmouseout="this.style.color='#d0d0d0'">Sustainability</a></li>
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">NAVIGASI</h4>
+          <ul class="footer-links">
+            <li><a href="#identity">Brand Identity</a></li>
+            <li><a href="#specs">Product Specs</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#why-us">What Sets Us Apart</a></li>
+            <li><a href="#sustainability">Zero Waste</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">PRODUK</h4>
+          <ul class="footer-links">
+            <li><a href="#specs">Sulawesi White Pepper (5-6mm)</a></li>
+            <li><a href="#specs">Whole Black Pepper (550-600 G/L)</a></li>
+            <li><a href="#specs">MACEH Jar 100g Glass Seal</a></li>
           </ul>
         </div>
       </div>
 
-      <div style="border-top:1px solid var(--border-subtle); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; color:var(--text-muted); font-size:0.8rem;">
+      <div class="footer-bottom">
         <div>&copy; 2026 MACEH INDONESIA. All rights reserved. Premium Sulawesi Spices.</div>
-        <div>Crafted with Natural Sulawesi Spices</div>
+        <div>Crafted with 100% Natural South Sulawesi Spices</div>
       </div>
     </div>
   </footer>
 
-  <!-- CART DRAWER & OVERLAY -->
-  <div class="cart-overlay" id="cart-overlay"></div>
-  <aside class="cart-drawer" id="cart-drawer">
-    <div class="cart-header">
-      <h3 class="cart-header-title">Atelier Cart</h3>
-      <button id="close-cart-btn" style="font-size:1.5rem; color:var(--text-muted);">&times;</button>
-    </div>
-    <div class="cart-body" id="cart-body">
-      <!-- Cart items rendered dynamically -->
-    </div>
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Subtotal</span>
-        <span id="cart-total">$0.00</span>
-      </div>
-      <button class="btn-primary" onclick="checkout()" style="width:100%; justify-content:center;">
-        <span>Proceed to Demonstration Checkout</span>
-      </button>
-    </div>
-  </aside>
-
-  <!-- QUICK VIEW MODAL -->
-  <div class="modal" id="quick-modal">
-    <div class="modal-backdrop" id="modal-backdrop"></div>
-    <div class="modal-content">
-      <button class="btn-close-modal" id="close-modal-btn">&times;</button>
-      <div id="modal-body" style="grid-column:span 2; display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
-        <!-- Modal details rendered dynamically -->
-      </div>
+  <!-- LIGHTBOX IMAGE MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="btn-close-lightbox" id="lightbox-close-btn">&times;</button>
+      <img src="" alt="Lightbox Preview" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
   </div>
 
