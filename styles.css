@@ -238,7 +238,7 @@ button {
 .hero-section {
   position: relative;
   padding-top: 9rem;
-  padding-bottom: 5rem;
+  padding-bottom: 1.5rem;
   overflow: hidden;
 }
 
@@ -257,7 +257,7 @@ button {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 4rem;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 0;
 }
 
 .hero-badge {
@@ -452,7 +452,7 @@ button {
 
 /* SECTIONS COMMON */
 .section {
-  padding: 6rem 0;
+  padding: 4.5rem 0;
   position: relative;
 }
 
@@ -491,6 +491,10 @@ button {
 }
 
 /* BRAND IDENTITY SHOWCASE */
+.section-identity {
+  padding-top: 1rem;
+}
+
 .spec-full-image-wrapper {
   position: relative;
   border-radius: var(--radius-lg);
