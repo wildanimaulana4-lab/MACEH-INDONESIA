@@ -772,22 +772,25 @@ button {
 }
 
 .process-card {
-  background: var(--bg-surface-elevated);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: var(--radius-md);
   padding: 2.25rem 1.75rem;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   transition: all var(--transition-normal);
 }
 
 .process-card:hover {
   transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--accent-green);
   box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
 .process-card-bg-3 {
-  background-image: linear-gradient(rgba(7, 37, 18, 0.75), rgba(4, 24, 11, 0.85)), url('process_step_3.jpg');
+  background-image: linear-gradient(rgba(7, 37, 18, 0.25), rgba(4, 24, 11, 0.45)), url('process_step_3.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
