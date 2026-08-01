@@ -307,10 +307,45 @@ function initContactForm() {
     const nameInput = document.getElementById('form-name');
     const emailInput = document.getElementById('form-email');
     const messageInput = document.getElementById('form-message');
+    const submitBtn = document.getElementById('submit-btn');
 
     if (nameInput.value && emailInput.value && messageInput.value) {
-      showToast(i18n[currentLang].toastSuccess);
-      form.reset();
+      // Show sending state
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>${currentLang === 'id' ? 'Mengirim...' : 'Sending...'}</span>`;
+
+      // Submit via FormSubmit AJAX endpoint
+      fetch('https://formsubmit.co/ajax/cvmacehindonesia@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameInput.value,
+          email: emailInput.value,
+          message: messageInput.value
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        
+        if (data.success === 'true' || data.success === true) {
+          showToast(i18n[currentLang].toastSuccess);
+          form.reset();
+        } else {
+          showToast(currentLang === 'id' ? 'Gagal mengirim pesan. Silakan coba lagi.' : 'Failed to send message. Please try again.');
+        }
+      })
+      .catch(error => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        showToast(currentLang === 'id' ? 'Terjadi kesalahan koneksi. Silakan coba lagi.' : 'A connection error occurred. Please try again.');
+        console.error('Error submitting form:', error);
+      });
     }
   });
 }
