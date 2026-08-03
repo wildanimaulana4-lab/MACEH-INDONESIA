@@ -1010,6 +1010,7 @@ button {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
 }
 
 .contact-heading {
@@ -1030,6 +1031,33 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* DESKTOP & LANDSCAPE MODE: Kotak Panjang (Wide Horizontal Box) */
+@media (min-width: 769px) {
+  .contact-card-wrapper {
+    max-width: 1050px;
+    padding: 3.5rem 4rem;
+  }
+
+  .contact-details-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 3.5rem;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+  .contact-card-wrapper {
+    max-width: 100%;
+    padding: 2.5rem 3rem;
+  }
+
+  .contact-details-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2.5rem;
+  }
 }
 
 .contact-detail-item {
@@ -1284,12 +1312,24 @@ button {
   }
 
   .contact-card-wrapper {
-    grid-template-columns: 1fr;
     padding: 2.5rem;
   }
 
   .footer-top-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .contact-card-wrapper {
+    max-width: 600px;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .contact-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
 
